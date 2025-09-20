@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/atoms/Button/Button';
-import { cn } from '@/lib/utils';
-import darkLuxurySalon from '@/assets/dark-luxury-salon.jpg';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/atoms/Button/Button";
+import { cn } from "@/lib/utils";
+import darkLuxurySalon from "@/assets/dark-luxury-salon.jpg";
 
 interface HeroProps {
   className?: string;
@@ -10,15 +10,17 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ className }) => {
   return (
-    <section className={cn(
-      'relative min-h-screen flex items-center justify-center overflow-hidden bg-background',
-      className
-    )}>
+    <section
+      className={cn(
+        "relative min-h-screen flex items-center justify-center overflow-hidden bg-background",
+        className
+      )}
+    >
       {/* Background Image with Dark Overlay */}
       <div className="absolute inset-0 z-0">
-        <img 
+        <img
           src={darkLuxurySalon}
-          alt="Dark Luxury Salon Interior" 
+          alt="Dark Luxury Salon Interior"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-overlay" />
@@ -34,13 +36,10 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
               <h1 className="text-6xl md:text-7xl lg:text-8xl font-light text-foreground leading-tight tracking-wide">
                 Luxury
               </h1>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light bg-gradient-primary bg-clip-text text-transparent leading-tight tracking-wide">
-                Redefined
-              </h2>
             </div>
-            
+
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed font-light">
-              Experience unparalleled beauty treatments in an atmosphere of 
+              Experience unparalleled beauty treatments in an atmosphere of
               <br className="hidden md:block" />
               pure elegance and sophistication
             </p>
@@ -53,7 +52,7 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
                 Book Appointment
               </Button>
             </Link>
-            
+
             <Link to="/services">
               <Button variant="watercolor" size="xl" className="min-w-[220px]">
                 View Services
