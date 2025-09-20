@@ -1,5 +1,5 @@
 import React from 'react';
-import { Hero } from '@/components/organisms/Hero/Hero';
+import { AnimatedHero } from '@/components/organisms/AnimatedHero/AnimatedHero';
 import { Navigation } from '@/components/organisms/Navigation/Navigation';
 import { Footer } from '@/components/organisms/Footer/Footer';
 import { ServiceCard } from '@/components/molecules/ServiceCard/ServiceCard';
@@ -121,7 +121,7 @@ export const HomePage: React.FC = () => {
       
       <main>
         {/* Hero Section */}
-        <Hero />
+        <AnimatedHero />
 
         {/* Featured Services */}
         <section className="py-24 bg-gradient-subtle">

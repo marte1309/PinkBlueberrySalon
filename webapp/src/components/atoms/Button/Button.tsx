@@ -14,9 +14,9 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-soft hover:shadow-blue hover:scale-105",
         ghost: "hover:bg-accent hover:text-accent-foreground hover:scale-105",
         link: "text-primary underline-offset-4 hover:underline hover:text-accent",
-        luxury: "bg-gradient-luxury text-primary-foreground shadow-gold hover:shadow-luxury hover:scale-105 font-medium",
-        watercolor: "bg-gradient-watercolor text-primary-foreground shadow-soft hover:shadow-luxury hover:scale-105 backdrop-blur-sm",
-        hero: "bg-gradient-primary text-primary-foreground shadow-luxury hover:shadow-gold hover:scale-105 text-h3 px-10 py-4 font-medium",
+        luxury: "bg-gradient-luxury text-primary-foreground shadow-gold hover:shadow-luxury hover:scale-105 font-medium relative overflow-hidden before:absolute before:inset-0 before:bg-white before:bg-opacity-10 before:translate-y-full hover:before:translate-y-0 before:transition-transform before:duration-300 before:ease-out before:rounded-lg",
+        watercolor: "bg-gradient-watercolor text-primary-foreground shadow-soft hover:shadow-luxury hover:scale-105 backdrop-blur-sm relative overflow-hidden before:absolute before:inset-0 before:bg-white before:bg-opacity-10 before:translate-x-full hover:before:translate-x-0 before:transition-transform before:duration-300 before:ease-out before:rounded-lg",
+        hero: "bg-gradient-primary text-primary-foreground shadow-luxury hover:shadow-gold hover:scale-105 text-h3 px-10 py-4 font-medium relative overflow-hidden before:absolute before:inset-0 before:bg-white before:bg-opacity-10 before:translate-y-full hover:before:translate-y-0 before:transition-transform before:duration-300 before:ease-out before:rounded-lg",
       },
       size: {
         default: "h-12 px-6 py-3",

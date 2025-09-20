@@ -16,6 +16,8 @@ import Cart from "./pages/Cart";
 import Booking from "./pages/Booking";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Showcase from "./pages/Showcase";
+import Showcase from "./pages/Showcase";
 
 const queryClient = new QueryClient();
 
