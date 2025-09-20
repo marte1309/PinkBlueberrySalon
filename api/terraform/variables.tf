@@ -1,17 +1,11 @@
-variable "aws_region" {
-  description = "AWS region for all resources"
+variable "cognito_pool_id" {
+  description = "The name of the Cognito User Pool"
   type        = string
-  default     = "us-east-1"
+  default     = "auth-api-user-pool"
 }
 
-variable "environment" {
-  description = "Deployment environment (e.g., dev, staging, prod)"
+variable "cognito_client_id" {
+  description = "The domain for the Cognito User Pool"
   type        = string
-  default     = "dev"
-}
-
-variable "allowed_origins" {
-  description = "List of allowed origins for CORS"
-  type        = list(string)
-  default     = ["*"]  # Replace with specific domains in production
+  default     = "auth-api-user-pool-domain"
 }
