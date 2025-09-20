@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import Index from "./pages/Index";
 import Services from "./pages/Services";
+import Products from "./pages/Products";
 import NotFound from "./pages/NotFound";
 import ProductCheckout from "./pages/ProductCheckout";
 import ServiceCheckout from "./pages/ServiceCheckout";
@@ -16,7 +17,6 @@ import Cart from "./pages/Cart";
 import Booking from "./pages/Booking";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Showcase from "./pages/Showcase";
 import Showcase from "./pages/Showcase";
 
 const queryClient = new QueryClient();
@@ -31,6 +31,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/products" element={<Products />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/register" element={<Register />} />
@@ -39,6 +40,7 @@ const App = () => (
             <Route path="/checkout/services" element={<ServiceCheckout />} />
             <Route path="/order-success" element={<OrderSuccess />} />
             <Route path="/booking-success" element={<BookingSuccess />} />
+            <Route path="/showcase" element={<Showcase />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
