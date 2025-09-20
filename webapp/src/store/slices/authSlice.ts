@@ -21,7 +21,7 @@ const getUserFromLocalStorage = (): User | null => {
   try {
     const userStr = localStorage.getItem("user");
     if (!userStr) return null;
-    
+
     const parsedUser = JSON.parse(userStr);
     // Verificamos que el objeto tenga la estructura esperada
     if (parsedUser && parsedUser.id && parsedUser.email) {
@@ -53,14 +53,7 @@ const authSlice = createSlice({
       state,
       action: PayloadAction<{ user: User; token: string }>
     ) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isAuthenticated = true;
       state.loading = false;
-
-      // Save to localStorage
-      localStorage.setItem("user", JSON.stringify(action.payload.user));
-      localStorage.setItem("token", action.payload.token);
     },
     registerFailure: (state) => {
       state.loading = false;
@@ -80,11 +73,13 @@ const authSlice = createSlice({
       // Save to localStorage
       localStorage.setItem("user", JSON.stringify(action.payload.user));
       localStorage.setItem("token", action.payload.token);
-      
+
       // Debug para verificar
-      console.log("Login success - User stored in localStorage:", 
+      console.log(
+        "Login success - User stored in localStorage:",
         localStorage.getItem("user"),
-        "Token stored:", localStorage.getItem("token")
+        "Token stored:",
+        localStorage.getItem("token")
       );
     },
     loginFailure: (state) => {

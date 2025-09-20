@@ -11,11 +11,14 @@ import {
   Calendar, 
   Sparkles,
   Phone,
-  X
+  X,
+  LogOut
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useSelector } from 'react-redux';
 import { MiniCart } from '@/components/molecules/MiniCart';
+import { UserMenu } from '@/components/molecules/UserMenu';
+import { LogoutButton } from '@/components/molecules/LogoutButton';
 import { RootState } from '@/store/store';
 
 interface NavigationProps {
@@ -33,7 +36,7 @@ export const Navigation: React.FC<NavigationProps> = ({ className }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { itemCount } = useSelector((state: RootState) => state.cart);
-  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+  const { isAuthenticated, user } = useSelector((state: RootState) => state.auth);
 
   const isActiveRoute = (path: string) => location.pathname === path;
 
@@ -75,22 +78,8 @@ export const Navigation: React.FC<NavigationProps> = ({ className }) => {
           <div className="hidden md:flex items-center gap-4">
             <MiniCart />
 
-            {isAuthenticated ? (
-              <Link to="/account">
-                <Button variant="ghost" size="icon">
-                  <User className="w-5 h-5" />
-                </Button>
-              </Link>
-            ) : (
-              <div className="flex gap-2">
-                <Link to="/login">
-                  <Button variant="ghost">Sign In</Button>
-                </Link>
-                <Link to="/register">
-                  <Button variant="luxury">Join Now</Button>
-                </Link>
-              </div>
-            )}
+            {/* Sustituimos la simple redirección a /account por el UserMenu */}
+            <UserMenu />
           </div>
 
           {/* Mobile Menu Button */}
@@ -114,6 +103,21 @@ export const Navigation: React.FC<NavigationProps> = ({ className }) => {
                     <X className="w-5 h-5" />
                   </Button>
                 </div>
+
+                {/* User info section for mobile (solo si está autenticado) */}
+                {isAuthenticated && user && (
+                  <div className="mb-6 pb-6 border-b border-border">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-semibold">
+                        {user.firstName.charAt(0)}{user.lastName.charAt(0)}
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="font-semibold">{user.firstName} {user.lastName}</span>
+                        <span className="text-sm text-muted-foreground">{user.rewardPoints} points</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 <div className="space-y-4">
                   {navigationItems.map((item) => {
@@ -139,12 +143,19 @@ export const Navigation: React.FC<NavigationProps> = ({ className }) => {
 
                 <div className="mt-8 pt-8 border-t border-border space-y-4">
                   {isAuthenticated ? (
-                    <Link to="/account" onClick={() => setMobileMenuOpen(false)}>
-                      <Button variant="outline" className="w-full">
-                        <User className="w-4 h-4" />
-                        My Account
-                      </Button>
-                    </Link>
+                    <>
+                      <Link to="/account" onClick={() => setMobileMenuOpen(false)}>
+                        <Button variant="outline" className="w-full justify-start">
+                          <User className="w-4 h-4 mr-2" />
+                          My Account
+                        </Button>
+                      </Link>
+                      <LogoutButton 
+                        variant="outline" 
+                        size="default" 
+                        className="w-full justify-start" 
+                      />
+                    </>
                   ) : (
                     <div className="space-y-3">
                       <Link to="/login" onClick={() => setMobileMenuOpen(false)}>

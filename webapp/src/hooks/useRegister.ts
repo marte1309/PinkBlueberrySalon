@@ -1,9 +1,13 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { useToast } from '@/components/ui/use-toast';
-import { authService, RegisterData } from '@/services/authService';
-import { registerStart, registerSuccess, registerFailure } from '@/store/slices/authSlice';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/components/ui/use-toast";
+import { authService, RegisterData } from "@/services/authService";
+import {
+  registerStart,
+  registerSuccess,
+  registerFailure,
+} from "@/store/slices/authSlice";
 
 export interface UseRegisterOptions {
   redirectTo?: string;
@@ -13,7 +17,7 @@ export interface UseRegisterOptions {
 
 export const useRegister = (options: UseRegisterOptions = {}) => {
   const {
-    redirectTo = '/',
+    redirectTo = "/login",
     showToast = true,
     autoNavigate = true,
   } = options;
@@ -34,16 +38,19 @@ export const useRegister = (options: UseRegisterOptions = {}) => {
       const response = await authService.register(data);
 
       // Dispatch success action
-      dispatch(registerSuccess({
-        user: response.user,
-        token: response.token,
-      }));
+      /* dispatch(
+        registerSuccess({
+          user: response.user,
+          token: response.token,
+        })
+      ); */
 
       // Show success toast if enabled
       if (showToast) {
         toast({
           title: "Account created!",
-          description: "Welcome to Pink Blueberry. You've been successfully registered.",
+          description:
+            "Welcome to Pink Blueberry. You've been successfully registered.",
         });
       }
 
@@ -57,7 +64,8 @@ export const useRegister = (options: UseRegisterOptions = {}) => {
       return response;
     } catch (err) {
       // Handle error
-      const errorMessage = err instanceof Error ? err.message : 'Registration failed';
+      const errorMessage =
+        err instanceof Error ? err.message : "Registration failed";
       setError(errorMessage);
       dispatch(registerFailure());
 
