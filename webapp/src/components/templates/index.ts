@@ -9,3 +9,4 @@ export { ForgotPasswordPage } from './ForgotPasswordPage/ForgotPasswordPage';
 export { ResetPasswordPage } from './ResetPasswordPage/ResetPasswordPage';
 export { ShowcasePage } from './ShowcasePage/ShowcasePage';
 export { AccountPage } from './AccountPage/AccountPage';
+export { ContactPage } from './ContactPage/ContactPage';
