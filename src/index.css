@@ -8,62 +8,63 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Luxury Pink Blueberry Salon Design System */
+    /* Dark Luxury Salon Design System */
     
-    /* Primary Brand Colors */
-    --primary-pink: 330 81% 60%; /* #ec4899 */
-    --primary-pink-light: 330 69% 85%; /* #f8bbd9 */
-    --primary-blue: 217 91% 60%; /* #3b82f6 */
-    --primary-blue-dark: 224 76% 48%; /* #1e40af */
-    --luxury-gold: 38 92% 50%; /* #f59e0b */
-    --luxury-gold-dark: 32 95% 44%; /* #d97706 */
+    /* Primary Brand Colors - Dark Luxury Theme */
+    --luxury-black: 220 13% 8%; /* #111827 */
+    --luxury-charcoal: 220 9% 15%; /* #1f2937 */
+    --luxury-dark-gray: 215 25% 27%; /* #374151 */
+    --luxury-gold: 45 93% 58%; /* #f59e0b */
+    --luxury-gold-light: 48 96% 89%; /* #fef3c7 */
+    --luxury-gold-accent: 35 91% 65%; /* #fbbf24 */
     
-    /* Neutral Palette */
-    --background: 210 20% 99%; /* #f8fafc */
-    --foreground: 215 25% 27%; /* #1e293b */
-    --surface: 0 0% 100%;
-    --surface-muted: 210 17% 96%; /* #f1f5f9 */
+    /* Neutral Palette - Dark Theme */
+    --background: var(--luxury-black);
+    --foreground: 210 40% 98%; /* #f8fafc */
+    --surface: var(--luxury-charcoal);
+    --surface-muted: var(--luxury-dark-gray);
     
     /* Semantic Colors */
     --success: 142 76% 36%; /* #10b981 */
     --warning: 38 92% 50%; /* #f59e0b */
     --error: 0 84% 60%; /* #ef4444 */
     
-    /* Component Colors */
+    /* Component Colors - Dark Luxury */
     --card: var(--surface);
     --card-foreground: var(--foreground);
     --popover: var(--surface);
     --popover-foreground: var(--foreground);
     
-    --primary: var(--primary-pink);
-    --primary-foreground: 0 0% 100%;
+    --primary: var(--luxury-gold);
+    --primary-foreground: var(--luxury-black);
     
-    --secondary: var(--primary-blue);
-    --secondary-foreground: 0 0% 100%;
+    --secondary: var(--luxury-charcoal);
+    --secondary-foreground: var(--foreground);
     
     --muted: var(--surface-muted);
-    --muted-foreground: 215 16% 47%;
+    --muted-foreground: 210 17% 65%; /* #94a3b8 */
     
-    --accent: var(--luxury-gold);
-    --accent-foreground: 0 0% 100%;
+    --accent: var(--luxury-gold-accent);
+    --accent-foreground: var(--luxury-black);
     
-    --destructive: var(--error);
+    --destructive: 0 84% 60%; /* #ef4444 */
     --destructive-foreground: 0 0% 100%;
     
-    --border: 215 20% 88%;
+    --border: 220 13% 25%; /* #374151 */
     --input: var(--border);
-    --ring: var(--primary);
+    --ring: var(--luxury-gold);
     
-    /* Luxury Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary-pink)), hsl(var(--primary-blue)));
-    --gradient-luxury: linear-gradient(135deg, hsl(var(--primary-pink)), hsl(var(--luxury-gold)));
-    --gradient-watercolor: linear-gradient(135deg, hsl(var(--primary-pink) / 0.8), hsl(var(--primary-blue) / 0.6), hsl(var(--luxury-gold) / 0.4));
-    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--surface-muted)));
+    /* Dark Luxury Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--luxury-gold)), hsl(var(--luxury-gold-accent)));
+    --gradient-luxury: linear-gradient(135deg, hsl(var(--luxury-gold)), hsl(var(--luxury-gold-light)));
+    --gradient-dark: linear-gradient(135deg, hsl(var(--luxury-black)), hsl(var(--luxury-charcoal)));
+    --gradient-overlay: linear-gradient(135deg, hsl(var(--luxury-black) / 0.8), hsl(var(--luxury-charcoal) / 0.6));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--surface)));
     
-    /* Shadows */
-    --shadow-luxury: 0 20px 40px -12px hsl(var(--primary-pink) / 0.25);
-    --shadow-gold: 0 10px 30px -10px hsl(var(--luxury-gold) / 0.3);
-    --shadow-soft: 0 4px 20px -4px hsl(215 25% 27% / 0.1);
+    /* Dark Luxury Shadows */
+    --shadow-luxury: 0 25px 50px -12px hsl(var(--luxury-black) / 0.8);
+    --shadow-gold: 0 20px 40px -10px hsl(var(--luxury-gold) / 0.4);
+    --shadow-soft: 0 8px 25px -5px hsl(var(--luxury-black) / 0.3);
     
     /* Typography Scale */
     --text-hero: 4.5rem; /* 72px */
@@ -94,46 +95,47 @@ All colors MUST be HSL.
   }
 
   .dark {
-    /* Dark Mode - Luxury Night Spa Theme */
-    --background: 215 28% 9%; /* #0f172a */
-    --foreground: 210 17% 95%; /* #f1f5f9 */
-    --surface: 215 25% 11%; /* #1e293b */
-    --surface-muted: 215 25% 15%; /* #334155 */
+    /* Enhanced Dark Mode - Keep same dark luxury theme */
+    --background: var(--luxury-black);
+    --foreground: 210 40% 98%;
+    --surface: var(--luxury-charcoal);
+    --surface-muted: var(--luxury-dark-gray);
     
     --card: var(--surface);
     --card-foreground: var(--foreground);
     --popover: var(--surface);
     --popover-foreground: var(--foreground);
     
-    --primary: var(--primary-pink);
-    --primary-foreground: 0 0% 100%;
+    --primary: var(--luxury-gold);
+    --primary-foreground: var(--luxury-black);
     
-    --secondary: var(--primary-blue);
-    --secondary-foreground: 0 0% 100%;
+    --secondary: var(--luxury-charcoal);
+    --secondary-foreground: var(--foreground);
     
     --muted: var(--surface-muted);
-    --muted-foreground: 215 16% 65%;
+    --muted-foreground: 210 17% 65%;
     
-    --accent: var(--luxury-gold);
-    --accent-foreground: 0 0% 100%;
+    --accent: var(--luxury-gold-accent);
+    --accent-foreground: var(--luxury-black);
     
-    --destructive: var(--error);
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 215 25% 20%;
+    --border: 220 13% 25%;
     --input: var(--border);
-    --ring: var(--primary);
+    --ring: var(--luxury-gold);
     
-    /* Dark Mode Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary-pink) / 0.9), hsl(var(--primary-blue) / 0.8));
-    --gradient-luxury: linear-gradient(135deg, hsl(var(--primary-pink) / 0.8), hsl(var(--luxury-gold) / 0.9));
-    --gradient-watercolor: linear-gradient(135deg, hsl(var(--primary-pink) / 0.6), hsl(var(--primary-blue) / 0.5), hsl(var(--luxury-gold) / 0.3));
+    /* Enhanced Dark Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--luxury-gold)), hsl(var(--luxury-gold-accent)));
+    --gradient-luxury: linear-gradient(135deg, hsl(var(--luxury-gold)), hsl(var(--luxury-gold-light)));
+    --gradient-dark: linear-gradient(135deg, hsl(var(--luxury-black)), hsl(var(--luxury-charcoal)));
+    --gradient-overlay: linear-gradient(135deg, hsl(var(--luxury-black) / 0.9), hsl(var(--luxury-charcoal) / 0.7));
     --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--surface)));
     
-    /* Dark Mode Shadows */
-    --shadow-luxury: 0 20px 40px -12px hsl(var(--primary-pink) / 0.4);
-    --shadow-gold: 0 10px 30px -10px hsl(var(--luxury-gold) / 0.4);
-    --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
+    /* Enhanced Dark Shadows */
+    --shadow-luxury: 0 25px 50px -12px hsl(var(--luxury-black) / 0.9);
+    --shadow-gold: 0 20px 40px -10px hsl(var(--luxury-gold) / 0.5);
+    --shadow-soft: 0 8px 25px -5px hsl(var(--luxury-black) / 0.4);
   }
 }
 
@@ -181,8 +183,12 @@ All colors MUST be HSL.
     background: var(--gradient-luxury);
   }
   
-  .bg-gradient-watercolor {
-    background: var(--gradient-watercolor);
+  .bg-gradient-dark {
+    background: var(--gradient-dark);
+  }
+  
+  .bg-gradient-overlay {
+    background: var(--gradient-overlay);
   }
   
   .bg-gradient-subtle {
