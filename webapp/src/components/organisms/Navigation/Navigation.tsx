@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useSelector } from 'react-redux';
+import { MiniCart } from '@/components/molecules/MiniCart';
 import { RootState } from '@/store/store';
 
 interface NavigationProps {
@@ -24,7 +25,7 @@ interface NavigationProps {
 const navigationItems = [
   { name: 'Services', href: '/services', icon: Sparkles },
   { name: 'Products', href: '/products', icon: ShoppingBag },
-  { name: 'Book Now', href: '/booking', icon: Calendar },
+  { name: 'Book Now', href: '/checkout/services', icon: Calendar },
   { name: 'Contact', href: '/contact', icon: Phone },
 ];
 
@@ -72,19 +73,7 @@ export const Navigation: React.FC<NavigationProps> = ({ className }) => {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-4">
-            <Link to="/cart" className="relative">
-              <Button variant="ghost" size="icon">
-                <ShoppingBag className="w-5 h-5" />
-                {itemCount > 0 && (
-                  <Badge 
-                    variant="default" 
-                    className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs bg-accent text-accent-foreground"
-                  >
-                    {itemCount}
-                  </Badge>
-                )}
-              </Button>
-            </Link>
+            <MiniCart />
 
             {isAuthenticated ? (
               <Link to="/account">
@@ -106,19 +95,7 @@ export const Navigation: React.FC<NavigationProps> = ({ className }) => {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
-            <Link to="/cart" className="relative">
-              <Button variant="ghost" size="icon">
-                <ShoppingBag className="w-5 h-5" />
-                {itemCount > 0 && (
-                  <Badge 
-                    variant="default" 
-                    className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs bg-accent text-accent-foreground"
-                  >
-                    {itemCount}
-                  </Badge>
-                )}
-              </Button>
-            </Link>
+            <MiniCart />
 
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
