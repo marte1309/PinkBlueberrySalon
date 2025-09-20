@@ -1,5 +1,9 @@
-const AWS = require("aws-sdk");
-const cognito = new AWS.CognitoIdentityServiceProvider();
+import {
+  CognitoIdentityProviderClient,
+  SignUpCommand,
+} from "@aws-sdk/client-cognito-identity-provider";
+
+const cognito = new CognitoIdentityProviderClient({ region: "us-east-1" });
 
 exports.handler = async (event) => {
   try {
@@ -43,7 +47,7 @@ exports.handler = async (event) => {
       UserAttributes: userAttributes,
     };
 
-    const signUpResponse = await cognito.signUp(signUpParams).promise();
+    const signUpResponse = await cognito.send(new SignUpCommand(signUpParams));
 
     return formatResponse(200, {
       message: "User registered successfully. Verification required.",

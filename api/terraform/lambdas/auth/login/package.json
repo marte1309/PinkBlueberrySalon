@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Authentication functions for Pink Blueberry API",
   "main": "index.js",
+  "type": "module",
   "dependencies": {
     "aws-sdk": "^2.1174.0"
   }

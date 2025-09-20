@@ -1,6 +1,6 @@
 resource "aws_lambda_function" "login_function" {
   function_name    = "login"
-  handler          = "login.handler"
+  handler          = "index.handler"
   runtime          = "nodejs20.x"
   filename         = "${path.module}/lambdas/auth/login/login.zip"
   source_code_hash = filebase64sha256("${path.module}/lambdas/auth/login/login.zip")
@@ -18,7 +18,7 @@ resource "aws_lambda_function" "login_function" {
 
 resource "aws_lambda_function" "register_function" {
   function_name    = "register"
-  handler          = "register.handler"
+  handler          = "index.handler"
   runtime          = "nodejs20.x"
   filename         = "${path.module}/lambdas/auth/register/register.zip"
   source_code_hash = filebase64sha256("${path.module}/lambdas/auth/register/register.zip")

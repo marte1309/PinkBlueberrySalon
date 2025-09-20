@@ -1,5 +1,8 @@
-const AWS = require("aws-sdk");
-const cognito = new AWS.CognitoIdentityServiceProvider();
+import {
+  CognitoIdentityProviderClient,
+  InitiateAuthCommand,
+} from "@aws-sdk/client-cognito-identity-provider";
+const cognito = new CognitoIdentityProviderClient({ region: "us-east-1" });
 
 exports.handler = async (event) => {
   try {
@@ -34,7 +37,9 @@ exports.handler = async (event) => {
       },
     };
 
-    const authResponse = await cognito.initiateAuth(authParams).promise();
+    const authResponse = await cognito.send(
+      new InitiateAuthCommand(authParams)
+    );
 
     // Return auth tokens to the client
     return formatResponse(200, {
