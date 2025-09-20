@@ -270,7 +270,7 @@ export const ServicesPage: React.FC = () => {
     const service = getAllServices().find(s => s.id === serviceId);
     if (service) {
       dispatch(addService(service));
-      // Navigate to booking page - would use router here
+      // Navigate to booking page
       window.location.href = '/booking';
     }
   };
@@ -296,7 +296,12 @@ export const ServicesPage: React.FC = () => {
                 Each service is crafted with precision and passion, using premium products and techniques to create your perfect look
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
-                <Button variant="luxury" size="lg" className="flex items-center gap-2">
+                <Button 
+                  variant="luxury" 
+                  size="lg" 
+                  className="flex items-center gap-2"
+                  onClick={() => window.location.href = '/booking'}
+                >
                   <Calendar className="w-5 h-5" />
                   Book Appointment
                 </Button>
@@ -578,6 +583,7 @@ export const ServicesPage: React.FC = () => {
                 variant="watercolor" 
                 size="xl" 
                 className="bg-white text-primary hover:bg-white/90"
+                onClick={() => window.location.href = '/booking'}
               >
                 Book Your Appointment
                 <Calendar className="w-5 h-5 ml-2" />

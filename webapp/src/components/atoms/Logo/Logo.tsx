@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
+import logoSvg from '@/assets/logos/pink-blueberry-logo.svg';
 
 interface LogoProps {
   className?: string;
@@ -28,7 +29,19 @@ export const Logo: React.FC<LogoProps> = ({
   if (variant === 'icon') {
     return (
       <div className={cn('flex items-center gap-2', className)}>
-        <div className="w-8 h-8 bg-gradient-luxury rounded-full shadow-gold animate-float" />
+        <img 
+          src={logoSvg} 
+          alt="Pink Blueberry Logo" 
+          className={cn(
+            'animate-float',
+            {
+              'w-8 h-8': size === 'sm',
+              'w-10 h-10': size === 'md',
+              'w-12 h-12': size === 'lg',
+              'w-16 h-16': size === 'xl',
+            }
+          )} 
+        />
       </div>
     );
   }
@@ -43,7 +56,19 @@ export const Logo: React.FC<LogoProps> = ({
 
   return (
     <div className={cn('flex items-center gap-3', className)}>
-      <div className="w-8 h-8 bg-gradient-luxury rounded-full shadow-gold animate-float" />
+      <img 
+        src={logoSvg} 
+        alt="Pink Blueberry Logo" 
+        className={cn(
+          'animate-float',
+          {
+            'w-8 h-8': size === 'sm',
+            'w-10 h-10': size === 'md',
+            'w-12 h-12': size === 'lg',
+            'w-16 h-16': size === 'xl',
+          }
+        )} 
+      />
       <span className={baseClasses}>
         Pink Blueberry
       </span>

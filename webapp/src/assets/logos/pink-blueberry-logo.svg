@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <!-- Background Circle with Gold Outline -->
+  <circle cx="250" cy="220" r="170" fill="none" stroke="#d97706" stroke-width="2" opacity="0.7"/>
+  
+  <!-- Gold Splatter Elements -->
+  <g fill="#f59e0b" opacity="0.8">
+    <circle cx="150" cy="120" r="3"/>
+    <circle cx="180" cy="90" r="2"/>
+    <circle cx="320" cy="110" r="3"/>
+    <circle cx="350" cy="130" r="2"/>
+    <circle cx="130" cy="200" r="2"/>
+    <circle cx="370" cy="200" r="3"/>
+    <circle cx="300" cy="90" r="2"/>
+    <circle cx="400" cy="170" r="2"/>
+  </g>
+  
+  <!-- Watercolor Blueberry -->
+  <g>
+    <!-- Pink Side -->
+    <path d="M170,220 C170,150 230,120 250,120 C250,120 250,120 250,120 C280,120 330,150 330,220 C330,290 280,320 250,320 C220,320 170,290 170,220 Z" fill="#f8bbd9" opacity="0.8"/>
+    
+    <!-- Blue Side (overlapping) -->
+    <path d="M190,220 C190,160 230,140 250,140 C250,140 250,140 250,140 C270,140 310,160 310,220 C310,280 270,300 250,300 C230,300 190,280 190,220 Z" fill="#3b82f6" opacity="0.8"/>
+    
+    <!-- Deeper Blue Center -->
+    <path d="M210,220 C210,180 230,160 250,160 C250,160 250,160 250,160 C270,160 290,180 290,220 C290,260 270,280 250,280 C230,280 210,260 210,220 Z" fill="#1e40af" opacity="0.7"/>
+    
+    <!-- Blueberry Top Indentation -->
+    <path d="M230,160 C230,160 250,170 270,160 C270,160 265,140 250,140 C235,140 230,160 230,160 Z" fill="#0f172a" opacity="0.6"/>
+  </g>
+  
+  <!-- Text "The Pink Blueberry" -->
+  <text x="250" y="370" font-family="cursive, serif" font-size="42" font-style="italic" text-anchor="middle" fill="#f59e0b" font-weight="bold">The Pink</text>
+  <text x="250" y="420" font-family="cursive, serif" font-size="48" font-style="italic" text-anchor="middle" fill="#f59e0b" font-weight="bold">Blueberry</text>
+  
+  <!-- Text "SALON" -->
+  <text x="250" y="460" font-family="sans-serif" font-size="24" text-anchor="middle" fill="#f59e0b" letter-spacing="5">SALON</text>
+</svg>

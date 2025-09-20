@@ -13,6 +13,7 @@ import ServiceCheckout from "./pages/ServiceCheckout";
 import OrderSuccess from "./pages/OrderSuccess";
 import BookingSuccess from "./pages/BookingSuccess";
 import Cart from "./pages/Cart";
+import Booking from "./pages/Booking";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/booking" element={<Booking />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout/products" element={<ProductCheckout />} />
             <Route path="/checkout/services" element={<ServiceCheckout />} />
