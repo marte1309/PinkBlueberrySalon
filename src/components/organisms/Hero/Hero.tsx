@@ -55,7 +55,7 @@ export const Hero: React.FC<HeroProps> = ({ className }) => {
             </Link>
             
             <Link to="/services">
-              <Button variant="outline" size="xl" className="min-w-[220px]">
+              <Button variant="watercolor" size="xl" className="min-w-[220px]">
                 View Services
               </Button>
             </Link>

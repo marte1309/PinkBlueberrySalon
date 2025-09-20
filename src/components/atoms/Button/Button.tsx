@@ -10,13 +10,13 @@ const buttonVariants = cva(
       variant: {
         default: "bg-primary text-primary-foreground shadow-soft hover:shadow-luxury hover:scale-105",
         destructive: "bg-destructive text-destructive-foreground shadow-soft hover:shadow-lg hover:scale-105",
-        outline: "border-2 border-foreground/30 bg-transparent text-foreground shadow-soft hover:bg-foreground/10 hover:border-foreground/50 hover:shadow-gold backdrop-blur-sm",
-        secondary: "bg-secondary text-secondary-foreground shadow-soft hover:shadow-luxury hover:scale-105",
+        outline: "border-2 border-foreground/30 bg-transparent text-foreground shadow-soft hover:bg-foreground/10 hover:border-foreground/50 hover:shadow-blue backdrop-blur-sm",
+        secondary: "bg-secondary text-secondary-foreground shadow-soft hover:shadow-blue hover:scale-105",
         ghost: "hover:bg-accent hover:text-accent-foreground hover:scale-105",
         link: "text-primary underline-offset-4 hover:underline hover:text-accent",
-        luxury: "bg-gradient-primary text-primary-foreground shadow-gold hover:shadow-luxury hover:scale-105 font-medium",
-        elegant: "bg-foreground/5 text-foreground border border-foreground/20 shadow-soft hover:bg-foreground/10 hover:shadow-gold backdrop-blur-sm",
-        hero: "bg-gradient-primary text-primary-foreground shadow-gold hover:shadow-luxury hover:scale-105 text-h3 px-10 py-4 font-medium",
+        luxury: "bg-gradient-luxury text-primary-foreground shadow-gold hover:shadow-luxury hover:scale-105 font-medium",
+        watercolor: "bg-gradient-watercolor text-primary-foreground shadow-soft hover:shadow-luxury hover:scale-105 backdrop-blur-sm",
+        hero: "bg-gradient-primary text-primary-foreground shadow-luxury hover:shadow-gold hover:scale-105 text-h3 px-10 py-4 font-medium",
       },
       size: {
         default: "h-12 px-6 py-3",

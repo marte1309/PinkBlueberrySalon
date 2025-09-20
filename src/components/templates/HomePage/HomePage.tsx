@@ -239,7 +239,7 @@ export const HomePage: React.FC = () => {
 
             <div className="text-center">
               <Link to="/products">
-                <Button variant="outline" size="lg">
+                <Button variant="watercolor" size="lg">
                   Shop All Products
                   <ArrowRight className="w-5 h-5" />
                 </Button>

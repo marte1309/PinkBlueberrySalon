@@ -55,8 +55,7 @@ export default {
         },
         luxury: {
           gold: "hsl(var(--luxury-gold))",
-          "gold-light": "hsl(var(--luxury-gold-light))", 
-          "gold-accent": "hsl(var(--luxury-gold-accent))",
+          "gold-dark": "hsl(var(--luxury-gold-dark))",
           black: "hsl(var(--luxury-black))",
           charcoal: "hsl(var(--luxury-charcoal))",
           "dark-gray": "hsl(var(--luxury-dark-gray))",
@@ -78,6 +77,7 @@ export default {
       backgroundImage: {
         "gradient-primary": "var(--gradient-primary)",
         "gradient-luxury": "var(--gradient-luxury)", 
+        "gradient-watercolor": "var(--gradient-watercolor)",
         "gradient-dark": "var(--gradient-dark)",
         "gradient-overlay": "var(--gradient-overlay)",
         "gradient-subtle": "var(--gradient-subtle)",
@@ -85,6 +85,7 @@ export default {
       boxShadow: {
         luxury: "var(--shadow-luxury)",
         gold: "var(--shadow-gold)",
+        blue: "var(--shadow-blue)",
         soft: "var(--shadow-soft)",
       },
       fontSize: {
