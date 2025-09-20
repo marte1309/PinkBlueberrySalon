@@ -17,7 +17,10 @@ import Cart from "./pages/Cart";
 import Booking from "./pages/Booking";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import Showcase from "./pages/Showcase";
+import Account from "./pages/Account";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +39,9 @@ const App = () => (
             <Route path="/cart" element={<Cart />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/account" element={<Account />} />
             <Route path="/checkout/products" element={<ProductCheckout />} />
             <Route path="/checkout/services" element={<ServiceCheckout />} />
             <Route path="/order-success" element={<OrderSuccess />} />

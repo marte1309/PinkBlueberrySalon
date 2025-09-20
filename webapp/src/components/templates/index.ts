@@ -5,4 +5,7 @@ export { ProductsPage } from './ProductsPage/ProductsPage';
 export { BookingPage } from './BookingPage/BookingPage';
 export { RegisterPage } from './RegisterPage/RegisterPage';
 export { LoginPage } from './LoginPage/LoginPage';
+export { ForgotPasswordPage } from './ForgotPasswordPage/ForgotPasswordPage';
+export { ResetPasswordPage } from './ResetPasswordPage/ResetPasswordPage';
 export { ShowcasePage } from './ShowcasePage/ShowcasePage';
+export { AccountPage } from './AccountPage/AccountPage';

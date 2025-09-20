@@ -3,6 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
+import { loginStart, loginSuccess, loginFailure } from '@/store/slices/authSlice';
+import { authService } from '@/services/authService';
 import { Navigation } from '@/components/organisms/Navigation/Navigation';
 import { Footer } from '@/components/organisms/Footer/Footer';
 import {
@@ -19,7 +23,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/components/ui/use-toast";
-import { User, Lock, Mail, CheckCircle, Key } from 'lucide-react';
+import { User, Lock, Mail, CheckCircle, Key, Loader2 } from 'lucide-react';
 
 // Define form schema with validation
 const formSchema = z.object({
@@ -36,7 +40,9 @@ type FormValues = z.infer<typeof formSchema>;
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { toast } = useToast();
+  const { loading } = useSelector((state: RootState) => state.auth);
 
   // Initialize form with react-hook-form
   const form = useForm<FormValues>({
@@ -51,8 +57,27 @@ export const LoginPage: React.FC = () => {
   // Handle form submission
   const onSubmit = async (values: FormValues) => {
     try {
-      // Here you would normally send the login request to your API
-      console.log("Login form submitted:", values);
+      // Dispatch login start action to show loading state
+      dispatch(loginStart());
+
+      // Call the auth service to login
+      const response = await authService.login({
+        email: values.email,
+        password: values.password,
+      });
+
+      // Store remember me preference
+      if (values.rememberMe) {
+        localStorage.setItem("rememberEmail", values.email);
+      } else {
+        localStorage.removeItem("rememberEmail");
+      }
+
+      // Dispatch login success with user and token
+      dispatch(loginSuccess({
+        user: response.user,
+        token: response.token,
+      }));
       
       // Show success toast
       toast({
@@ -63,16 +88,28 @@ export const LoginPage: React.FC = () => {
       // Redirect to homepage after successful login
       setTimeout(() => {
         navigate('/');
-      }, 1500);
+      }, 1000);
     } catch (error) {
-      console.error("Login error:", error);
+      // Dispatch login failure
+      dispatch(loginFailure());
+
+      // Show error toast with message from API service
       toast({
         title: "Login failed",
-        description: "Invalid email or password. Please try again.",
+        description: error instanceof Error ? error.message : "Invalid email or password. Please try again.",
         variant: "destructive",
       });
     }
   };
+
+  // Populate email from localStorage if "remember me" was checked previously
+  React.useEffect(() => {
+    const rememberedEmail = localStorage.getItem("rememberEmail");
+    if (rememberedEmail) {
+      form.setValue("email", rememberedEmail);
+      form.setValue("rememberMe", true);
+    }
+  }, [form]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -172,8 +209,16 @@ export const LoginPage: React.FC = () => {
                       variant="luxury" 
                       size="lg" 
                       className="w-full mt-6"
+                      disabled={loading}
                     >
-                      Sign In
+                      {loading ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Signing In...
+                        </>
+                      ) : (
+                        "Sign In"
+                      )}
                     </Button>
                   </form>
                 </Form>

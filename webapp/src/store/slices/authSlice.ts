@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface User {
   id: string;
@@ -17,28 +17,31 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  user: JSON.parse(localStorage.getItem('user') || 'null'),
-  token: localStorage.getItem('token'),
-  isAuthenticated: !!localStorage.getItem('token'),
+  user: JSON.parse(localStorage.getItem("user") || "{}"),
+  token: localStorage.getItem("token"),
+  isAuthenticated: !!localStorage.getItem("token"),
   loading: false,
 };
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
     registerStart: (state) => {
       state.loading = true;
     },
-    registerSuccess: (state, action: PayloadAction<{ user: User; token: string }>) => {
+    registerSuccess: (
+      state,
+      action: PayloadAction<{ user: User; token: string }>
+    ) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isAuthenticated = true;
       state.loading = false;
-      
+
       // Save to localStorage
-      localStorage.setItem('user', JSON.stringify(action.payload.user));
-      localStorage.setItem('token', action.payload.token);
+      localStorage.setItem("user", JSON.stringify(action.payload.user));
+      localStorage.setItem("token", action.payload.token);
     },
     registerFailure: (state) => {
       state.loading = false;
@@ -46,15 +49,18 @@ const authSlice = createSlice({
     loginStart: (state) => {
       state.loading = true;
     },
-    loginSuccess: (state, action: PayloadAction<{ user: User; token: string }>) => {
+    loginSuccess: (
+      state,
+      action: PayloadAction<{ user: User; token: string }>
+    ) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isAuthenticated = true;
       state.loading = false;
-      
+
       // Save to localStorage
-      localStorage.setItem('user', JSON.stringify(action.payload.user));
-      localStorage.setItem('token', action.payload.token);
+      localStorage.setItem("user", JSON.stringify(action.payload.user));
+      localStorage.setItem("token", action.payload.token);
     },
     loginFailure: (state) => {
       state.loading = false;
@@ -63,19 +69,28 @@ const authSlice = createSlice({
       state.user = null;
       state.token = null;
       state.isAuthenticated = false;
-      
+
       // Clear localStorage
-      localStorage.removeItem('user');
-      localStorage.removeItem('token');
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
     },
     updateUserPoints: (state, action: PayloadAction<number>) => {
       if (state.user) {
         state.user.rewardPoints = action.payload;
-        localStorage.setItem('user', JSON.stringify(state.user));
+        localStorage.setItem("user", JSON.stringify(state.user));
       }
     },
   },
 });
 
-export const { registerStart, registerSuccess, registerFailure, loginStart, loginSuccess, loginFailure, logout, updateUserPoints } = authSlice.actions;
+export const {
+  registerStart,
+  registerSuccess,
+  registerFailure,
+  loginStart,
+  loginSuccess,
+  loginFailure,
+  logout,
+  updateUserPoints,
+} = authSlice.actions;
 export default authSlice.reducer;

@@ -25,6 +25,7 @@ interface NavigationProps {
 const navigationItems = [
   { name: 'Services', href: '/services', icon: Sparkles },
   { name: 'Products', href: '/products', icon: ShoppingBag },
+  { name: 'Book Now', href: '/booking', icon: Calendar },
   { name: 'Contact', href: '/contact', icon: Phone },
 ];
 

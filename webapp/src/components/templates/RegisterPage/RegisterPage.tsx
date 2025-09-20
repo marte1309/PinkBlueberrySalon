@@ -321,7 +321,7 @@ export const RegisterPage: React.FC = () => {
                     {/* Submit Button */}
                     <Button
                       type="submit"
-                      variant="luxury"
+                      variant="outline"
                       size="lg"
                       className="w-full mt-6"
                       disabled={isRegistering}
