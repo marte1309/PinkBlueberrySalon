@@ -27,10 +27,44 @@ export interface AuthResponse {
   token: string;
 }
 
+// Interfaz para la respuesta real del servidor
+export interface ApiAuthResponse {
+  message: string;
+  tokens: {
+    idToken: string;
+    accessToken: string;
+    refreshToken: string;
+    expiresIn: number;
+  };
+}
+
 class AuthService {
   async login(credentials: LoginCredentials): Promise<AuthResponse> {
     try {
-      return await apiService.post<AuthResponse>('/auth/login', credentials);
+      // Llamar al API con las credenciales
+      const response = await apiService.post<ApiAuthResponse>('/auth/login', credentials);
+      
+      // Extraer información del token para obtener datos del usuario
+      // En un caso real, podrías decodificar el JWT para obtener la información del usuario
+      // o hacer una petición adicional al API para obtener los detalles del usuario
+      const tokenPayload = this.parseJwt(response.tokens.idToken);
+      
+      // Transformar la respuesta al formato esperado por la aplicación
+      const authResponse: AuthResponse = {
+        user: {
+          id: tokenPayload.sub || '',
+          email: tokenPayload.email || '',
+          firstName: tokenPayload.name ? tokenPayload.name.split(' ')[0] : '',
+          lastName: tokenPayload.name ? tokenPayload.name.split(' ')[1] || '' : '',
+          rewardPoints: 0 // Este dato vendría de otro endpoint o estaría en el token
+        },
+        token: response.tokens.accessToken
+      };
+      
+      // También podemos guardar el refresh token para usarlo más tarde
+      localStorage.setItem("refreshToken", response.tokens.refreshToken);
+      
+      return authResponse;
     } catch (error) {
       throw handleApiError(error, {
         401: 'Invalid email or password. Please try again.',
@@ -39,9 +73,48 @@ class AuthService {
     }
   }
 
+  // Función auxiliar para decodificar un JWT
+  private parseJwt(token: string): any {
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split('')
+          .map(function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+          })
+          .join('')
+      );
+      return JSON.parse(jsonPayload);
+    } catch (error) {
+      console.error('Error parsing JWT token:', error);
+      return {};
+    }
+  }
+
   async register(data: RegisterData): Promise<AuthResponse> {
     try {
-      return await apiService.post<AuthResponse>('/auth/register', data);
+      const response = await apiService.post<ApiAuthResponse>('/auth/register', data);
+      
+      // Similar a login, transformamos la respuesta
+      const tokenPayload = this.parseJwt(response.tokens.idToken);
+      
+      const authResponse: AuthResponse = {
+        user: {
+          id: tokenPayload.sub || '',
+          email: tokenPayload.email || '',
+          firstName: data.firstName,
+          lastName: data.lastName,
+          phone: data.phone,
+          rewardPoints: 0
+        },
+        token: response.tokens.accessToken
+      };
+      
+      localStorage.setItem("refreshToken", response.tokens.refreshToken);
+      
+      return authResponse;
     } catch (error) {
       throw handleApiError(error, {
         409: 'This email is already registered. Please use a different email or try to login.',
@@ -56,12 +129,40 @@ class AuthService {
       return await apiService.post<void>('/auth/logout');
     } catch (error) {
       throw handleApiError(error);
+    } finally {
+      // Siempre eliminamos los tokens del almacenamiento local al cerrar sesión
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      localStorage.removeItem("refreshToken");
     }
   }
 
   async refreshToken(): Promise<AuthResponse> {
     try {
-      return await apiService.post<AuthResponse>('/auth/refresh');
+      const refreshToken = localStorage.getItem("refreshToken");
+      
+      if (!refreshToken) {
+        throw new Error('No refresh token available');
+      }
+      
+      const response = await apiService.post<ApiAuthResponse>('/auth/refresh', { refreshToken });
+      
+      const tokenPayload = this.parseJwt(response.tokens.idToken);
+      
+      const authResponse: AuthResponse = {
+        user: {
+          id: tokenPayload.sub || '',
+          email: tokenPayload.email || '',
+          firstName: tokenPayload.name ? tokenPayload.name.split(' ')[0] : '',
+          lastName: tokenPayload.name ? tokenPayload.name.split(' ')[1] || '' : '',
+          rewardPoints: 0 // Este dato vendría de otro endpoint
+        },
+        token: response.tokens.accessToken
+      };
+      
+      localStorage.setItem("refreshToken", response.tokens.refreshToken);
+      
+      return authResponse;
     } catch (error) {
       throw handleApiError(error, {
         401: 'Your session has expired. Please login again.'

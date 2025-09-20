@@ -89,6 +89,10 @@ class APIService {
       }
 
       const response: AxiosResponse<T> = await this.api.request<T>(config);
+      
+      // Para depuración
+      console.log(`API ${method.toUpperCase()} ${endpoint} Response:`, response.data);
+      
       return response.data;
     } catch (error) {
       console.error(`API ${method} request failed for ${endpoint}:`, error);
@@ -122,6 +126,28 @@ class APIService {
     params?: Record<string, unknown>
   ): Promise<T> {
     return this.request<T>("delete", endpoint, params);
+  }
+  
+  // Método para configurar datos de prueba (solo para desarrollo)
+  async mockAuthResponse() {
+    // Simulación para probar en desarrollo local
+    const mockUser = {
+      id: "14a8d448-5081-7052-0d83-d0a65805d10",
+      email: "mrd1309+test@gmail.com",
+      firstName: "Mariano",
+      lastName: "Rodriguez",
+      rewardPoints: 100
+    };
+    
+    const mockToken = "eyJraWQiOiJiVTNlUHRScnpOYTBocUJLSWpmWnFIVm5wcVBKTW5kODFxR3Vud1wvQ3VyWT0iLCJhbGciOiJSUzI1NiJ9..."; // Token truncado
+    
+    localStorage.setItem("user", JSON.stringify(mockUser));
+    localStorage.setItem("token", mockToken);
+    
+    return {
+      user: mockUser,
+      token: mockToken
+    };
   }
 }
 

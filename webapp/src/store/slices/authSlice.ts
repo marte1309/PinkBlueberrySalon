@@ -16,8 +16,27 @@ interface AuthState {
   loading: boolean;
 }
 
+// Función para obtener el usuario del localStorage de forma segura
+const getUserFromLocalStorage = (): User | null => {
+  try {
+    const userStr = localStorage.getItem("user");
+    if (!userStr) return null;
+    
+    const parsedUser = JSON.parse(userStr);
+    // Verificamos que el objeto tenga la estructura esperada
+    if (parsedUser && parsedUser.id && parsedUser.email) {
+      return parsedUser;
+    }
+    return null;
+  } catch (error) {
+    console.error("Error parsing user from localStorage:", error);
+    return null;
+  }
+};
+
+// Estado inicial con manejo seguro de localStorage
 const initialState: AuthState = {
-  user: JSON.parse(localStorage.getItem("user") || "{}"),
+  user: getUserFromLocalStorage(),
   token: localStorage.getItem("token"),
   isAuthenticated: !!localStorage.getItem("token"),
   loading: false,
@@ -61,6 +80,12 @@ const authSlice = createSlice({
       // Save to localStorage
       localStorage.setItem("user", JSON.stringify(action.payload.user));
       localStorage.setItem("token", action.payload.token);
+      
+      // Debug para verificar
+      console.log("Login success - User stored in localStorage:", 
+        localStorage.getItem("user"),
+        "Token stored:", localStorage.getItem("token")
+      );
     },
     loginFailure: (state) => {
       state.loading = false;
@@ -73,6 +98,7 @@ const authSlice = createSlice({
       // Clear localStorage
       localStorage.removeItem("user");
       localStorage.removeItem("token");
+      localStorage.removeItem("refreshToken");
     },
     updateUserPoints: (state, action: PayloadAction<number>) => {
       if (state.user) {

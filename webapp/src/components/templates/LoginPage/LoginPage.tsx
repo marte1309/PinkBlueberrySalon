@@ -60,11 +60,15 @@ export const LoginPage: React.FC = () => {
       // Dispatch login start action to show loading state
       dispatch(loginStart());
 
+      console.log("Login form submitted with values:", values);
+
       // Call the auth service to login
       const response = await authService.login({
         email: values.email,
         password: values.password,
       });
+
+      console.log("Login API response:", response);
 
       // Store remember me preference
       if (values.rememberMe) {
@@ -79,6 +83,12 @@ export const LoginPage: React.FC = () => {
         token: response.token,
       }));
       
+      // Verificar que se almacenaron correctamente
+      console.log("After login success - localStorage state:", {
+        user: localStorage.getItem("user"),
+        token: localStorage.getItem("token"),
+      });
+      
       // Show success toast
       toast({
         title: "Welcome back!",
@@ -90,6 +100,9 @@ export const LoginPage: React.FC = () => {
         navigate('/');
       }, 1000);
     } catch (error) {
+      // Log error details
+      console.error("Login error:", error);
+      
       // Dispatch login failure
       dispatch(loginFailure());
 
@@ -109,6 +122,13 @@ export const LoginPage: React.FC = () => {
       form.setValue("email", rememberedEmail);
       form.setValue("rememberMe", true);
     }
+    
+    // Log initial localStorage state for debugging
+    console.log("Initial localStorage state:", {
+      rememberEmail: localStorage.getItem("rememberEmail"),
+      user: localStorage.getItem("user"),
+      token: localStorage.getItem("token"),
+    });
   }, [form]);
 
   return (
