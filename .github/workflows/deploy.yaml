@@ -25,15 +25,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Move to webapp directory
-        run: cd webapp
-
       - name: Install dependencies
         run: |
+          cd webapp
           npm ci
 
       - name: Build Project
         run: |
+          cd webapp
           npm run build
 
       - name: Sync files
