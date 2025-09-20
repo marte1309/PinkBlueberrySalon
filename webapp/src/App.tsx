@@ -14,6 +14,8 @@ import OrderSuccess from "./pages/OrderSuccess";
 import BookingSuccess from "./pages/BookingSuccess";
 import Cart from "./pages/Cart";
 import Booking from "./pages/Booking";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +31,8 @@ const App = () => (
             <Route path="/services" element={<Services />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/checkout/products" element={<ProductCheckout />} />
             <Route path="/checkout/services" element={<ServiceCheckout />} />
             <Route path="/order-success" element={<OrderSuccess />} />
