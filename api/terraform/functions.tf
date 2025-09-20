@@ -29,6 +29,7 @@ resource "aws_lambda_function" "register_function" {
   environment {
     variables = {
       COGNITO_CLIENT_ID = var.cognito_client_id
+      COGNITO_POOL_ID   = var.cognito_pool_id
     }
   }
 }

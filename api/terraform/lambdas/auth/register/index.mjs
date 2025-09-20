@@ -5,7 +5,7 @@ import {
 
 const cognito = new CognitoIdentityProviderClient({ region: "us-east-1" });
 
-exports.handler = async (event) => {
+export const handler = async (event) => {
   try {
     // Parse request body
     const requestBody = JSON.parse(event.body);
