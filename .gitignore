@@ -1,1 +1,3 @@
 api/terraform/config.auto.tfvars
+api/.DS_Store
+.DS_Store
