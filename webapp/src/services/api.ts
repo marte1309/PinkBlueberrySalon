@@ -1,5 +1,7 @@
 // Base API configuration
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://api.pinkblueberrysalon.com';
+const API_BASE_URL =
+  process.env.VITE_API_URL ||
+  "https://yfpgb7jeyc.execute-api.us-east-1.amazonaws.com";
 
 class APIService {
   private baseURL: string;
@@ -8,12 +10,12 @@ class APIService {
   constructor() {
     this.baseURL = API_BASE_URL;
     this.headers = {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     };
   }
 
   private getAuthHeader(): Record<string, string> {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     return token ? { Authorization: `Bearer ${token}` } : {};
   }
 
@@ -33,7 +35,7 @@ class APIService {
 
     try {
       const response = await fetch(url, config);
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -47,13 +49,13 @@ class APIService {
 
   // GET request
   async get<T>(endpoint: string): Promise<T> {
-    return this.request<T>(endpoint, { method: 'GET' });
+    return this.request<T>(endpoint, { method: "GET" });
   }
 
   // POST request
   async post<T>(endpoint: string, data?: unknown): Promise<T> {
     return this.request<T>(endpoint, {
-      method: 'POST',
+      method: "POST",
       body: data ? JSON.stringify(data) : undefined,
     });
   }
@@ -61,14 +63,14 @@ class APIService {
   // PUT request
   async put<T>(endpoint: string, data?: unknown): Promise<T> {
     return this.request<T>(endpoint, {
-      method: 'PUT',
+      method: "PUT",
       body: data ? JSON.stringify(data) : undefined,
     });
   }
 
   // DELETE request
   async delete<T>(endpoint: string): Promise<T> {
-    return this.request<T>(endpoint, { method: 'DELETE' });
+    return this.request<T>(endpoint, { method: "DELETE" });
   }
 }
 
